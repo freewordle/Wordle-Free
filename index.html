@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wordle Croatia</title>
+  <title>Wordle Free</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -18,7 +18,7 @@
     }
     .grid {
       display: grid; grid-template-rows: repeat(6, 1fr);
-      grid-gap: 5px; margin-bottom: 20px;
+      grid-gap: 5px; margin-bottom: 10px;
     }
     .row {
       display: grid; grid-template-columns: repeat(5, 60px);
@@ -36,7 +36,7 @@
     .absent { background: #3a3a3c; border-color: #3a3a3c; color: #fff; }
 
     #reveal-word {
-      margin-top: 10px; font-size: 1rem; color: #ff5555;
+      margin-top: 12px; font-size: 1rem; color: #000000;font-weight: bold;
     }
     #correct-count {
       margin-top: 20px; background: #538d4e; color: #000;
@@ -44,7 +44,7 @@
       font-size: 1.2rem; font-weight: bold; text-align: center;
     }
     #not-in-list {
-      margin-top: 10px; font-size: 1rem; color: #ff5555;
+      margin-top: 10px; font-size: 1rem; color: #000000;font-weight: bold; 
     }
     #next-word-btn {
       display: none;
@@ -74,12 +74,10 @@
   border-radius: 8px;
 }
 
-
-
   .icons {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 26px;
   margin-top: 40px;
 }
 
@@ -87,7 +85,7 @@
   width: 32px;
   height: 32px;
   object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(58%) sepia(15%) saturate(992%) hue-rotate(60deg) brightness(92%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(59%) sepia(15%) saturate(992%) hue-rotate(60deg) brightness(92%) contrast(90%);
 }
 
 
@@ -129,9 +127,67 @@
   color: #888;
 }
 
+
+
+body {
+    background: url("christmas.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.snowflake {
+  position: fixed;
+  top: -7px;
+  color: white;
+  font-size: 1.7rem;
+  animation: fall 3s linear infinite;
+  user-select: none;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+
+.tree {
+  position: fixed;
+  bottom: 15px;
+  font-size: 2.8rem;
+  animation: shine 2s infinite alternate ease-in-out;
+}
+.tree-right { right: 10px; }
+@keyframes shine {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.3); opacity: 1; }
+}
+
+.star {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 2.5rem;
+  animation: shine 2s infinite alternate ease-in-out;
+}
+
+@keyframes shine {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.3); opacity: 1; }
+}
+
+
+
+
   </style>
 </head>
 <body>
+
+<div class="tree tree-right">🎄</div>
+<div class="star">⭐</div>
+
+
+<div class="snowflake">❅</div>
+<div class="snowflake">❆</div>
+<div class="snowflake">❄</div>
 
   <h1><img src="icon.png" alt="Logo" width="32" height="32">
     Wordle</h1> 
@@ -139,41 +195,23 @@
   <div class="grid" id="grid"></div>
   <div id="not-in-list"></div>
   <div id="reveal-word"></div>
-  <button id="next-word-btn">Sljedeća Riječ</button>
+  <button id="next-word-btn">Next Word </button>
   
 
 <div id="questsBox" class="quest-box">
-  <h3>Dnevni izazovi</h3>
+  <h3>Daily Quests</h3>
   <ul id="questsList"></ul>
 </div>
 
 
   <script>
     const rijeci = [
-      "olovo","mačke","kamen","glava","polje","crven","plava","zvono","zebra","bravo","bazga",
-      "lampa","majka","mozak","ulica","vrije","zmije","papir","patka","ulica","noćas","mudar",
-      "zlato","hrast","ponoć","kazna","rebro","poker","čipka","ljeto","gotov","sudac","fosil",
-      "nokat","igrač","crkva","matko","cesta","tigar","lopta","život","torba","istra","drava",
-      "hrvat","rukav","grana","breza","blago","basna","boris","litva","limun","lagan","lapud",
-      "farma","fokus","filip","marko","fanta","frape","farba","ulazi","uspon","ukras","ustav",
-      "mozak","tuzla","pegla","oblak","lonac","dunav","malta","japan","karlo","vesna","radit",
-      "kutak","duzni","vrpca","ćevap","oprez","dioba","remen","paket","kukac","otkup","mrtvi",
-      "doziv","teror","oslon","uskrs","božić","oglas","uglas","solin","tajna","ručka","narav",
-      "netko","liker","lovit","papak","papir","omlet","zadar","obala","hvala","riječ","slovo",
-      "slova","volim","volit","bosna","vatra","ormar","josip","tovar","jelen","pariz","paris",
-      "jedan","sedam","mekan","žedan","imena","mokar","borba","radar","split","novac","labud",
-      "mrkva","dobar","mačka","nitko","iskra","sisak","momci","momak","zidar","reket","rakun",
-      "roman","runda","radio","ručak","ragbi","nisko","nepal","nisam","nered","nemam","namaz",
-      "lopov","gulaš","galeb","ocean","oklop","pegla","palac","panda","petak","pizza","palma",
-      "bakar","kakav","takav","slova","upiši","goran","tenis","nisam","kralj","zelen","malen",
-      "nekad","moram","zoran","devet","frend","slang","super","ugled","sunce","melem","banka",
-      "nikad","zidam","zapad","moler","izlaz","šesto","miris","molim","vokal","azija","milan",
-      "ikona","daska","balon","vrata","ekran","krava","cipar","jakna","frula","malac","petar",
-      "kotar","audio","sport","kotač","staro","kabel","korak","nokat","jesam","nerad","teren",
-      "perem","nizak","visok","gorak","odani","vegas","lovac","motor","blagi","umaci","popis",
-      "plaža","novak","magla","časna","trump","klapa","molit","motiv","brada","lopte","braća",
-      "dabar","golub","škola","alarm","vrana","autić","bomba","vosak","točak","tetka","okvir",
-      "hotel","motel","vikat","vitak","šator","jutro","ovani"
+      "added","adopt","aired","words","alive","alian","alias","jumps","unzip","zebra","quest","pizza",
+      "fizzy","plaza","blitz","remix","image","jelly","unbox","poppy","exams","cooky","chump","witch",
+      "yacht","about","above","again","audio","arrow","brown","chest","china","candy","catch","child",
+      "cloud","class","check","close","break","build","devil","dress","drink","drive","apple","false",
+      "fancy","error","final","lucas","fight","first","guide","happy","guilt","heart","laugh","label",
+      "magic","media","match","draft","clock","alarm","black","flood","focus","going","habit","juice",
     ]
 
     let secret = "";
@@ -234,10 +272,10 @@
       nextBtn.style.display = "inline-block";
       if (won) {
         correctCount++;
-        countDiv.textContent = `Pogodio si ${correctCount} riječ`;
+        countDiv.textContent = `You guessed ${correctCount} the word`;
         revealDiv.textContent = "";
       } else {
-        revealDiv.textContent = `Riječ je bila: ${secret.toUpperCase()}`;
+        revealDiv.textContent = `The word was: ${secret.toUpperCase()}`;
       }
     }
 
@@ -249,7 +287,7 @@
       if (e.key === "Enter") {
         if (currentGuess.length !== 5) return;
         if (!rijeci.includes(currentGuess)) {
-          notListDiv.textContent = "Riječ nije na popisu";
+          notListDiv.textContent = "The word is not in the database.";
           return;
         }
         revealRow(currentGuess);
@@ -301,17 +339,17 @@
 const quests = [
   {
     id: "firstTry",
-    text: "Pogodi riječ iz prve",
+    text: "Guess the word on the first try",
     completed: false
   },
   {
     id: "streak3",
-    text: "Pogodi 3 riječi zaredom",
+    text: "Guess 3 words in a row",
     completed: false
   },
   {
     id: "noA",
-    text: "Pogodi riječ bez slova 'A' ",
+    text: "Guess the word without the letter (A) ",
     completed: false
   }
 ];
@@ -396,6 +434,12 @@ loadQuests();
 resetQuestsIfNeeded();
 renderQuests();
 
+  const flakes = document.querySelectorAll('.snowflake');
+  flakes.forEach(flake => {
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.animationDuration = (10 + Math.random() * 9) + "s";
+  });
+
 
   </script>
 
@@ -413,7 +457,7 @@ renderQuests();
 
 
 <div class="copyright">
-  © 2025 WordleCro.
+  © 2025 WordleFree.
 </div>
 
 </body>
