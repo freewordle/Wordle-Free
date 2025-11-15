@@ -461,7 +461,7 @@ function resetQuestsIfNeeded() {
 // Kad pogodi riječ
 function onWordGuessed(correct, attemptNumber, wordGuessed) {
   if (correct && attemptNumber === 1) completeQuest("firstTry");
-  if (correct && !wordGuessed.includes("A")) completeQuest("noA");
+  if (correct && !wordGuessed.includes("A,a")) completeQuest("adopt,added,aired,alian,alias,alive");
 
   // Ovdje dodaj svoju logiku za streak:
   updateStreak(correct);
