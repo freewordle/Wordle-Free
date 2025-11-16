@@ -147,32 +147,6 @@ body {
   100% { transform: translateY(100vh); opacity: 0; }
 }
 
-
-.tree {
-  position: fixed;
-  bottom: 15px;
-  font-size: 2.8rem;
-  animation: shine 2s infinite alternate ease-in-out;
-}
-.tree-right { right: 10px; }
-@keyframes shine {
-  from { transform: scale(1); opacity: 0.6; }
-  to { transform: scale(1.3); opacity: 1; }
-}
-
-.star {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  font-size: 2.5rem;
-  animation: shine 2s infinite alternate ease-in-out;
-}
-
-@keyframes shine {
-  from { transform: scale(1); opacity: 0.6; }
-  to { transform: scale(1.3); opacity: 1; }
-}
-
 .footer-icons {
     position: fixed;
     bottom: 20px;
@@ -204,7 +178,7 @@ body {
 
 #countdown {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: rgb(230, 195, 0);
   margin-top: 10px;
   text-shadow: 0 0 10px rgb(92, 6, 6);
@@ -212,8 +186,47 @@ body {
 }
 
 body {
-    box-shadow: inset 0 0 150px rgba(255, 78, 78, 0.4);
+    box-shadow: inset 0 0 80px rgba(255, 78, 78, 0.4);
 }
+
+
+/* 🎄 CHRISTMAS LIGHT EFFECT FOR WORDLE TILES */
+
+.tile.correct { 
+  background-color: #4caf50 !important; /* Christmas green */
+  border-color: #4caf50 !important;
+  animation: christmas-green 1.5s infinite alternate;
+}
+
+.tile.present { 
+  background-color: #fada5e !important; /* Warm yellow */
+  border-color: #fada5e !important;
+  animation: christmas-yellow 1.5s infinite alternate;
+}
+
+.tile.absent { 
+  background-color: #555 !important; /* Soft gray */
+  border-color: #555 !important;
+  animation: christmas-off 2.5s infinite alternate;
+}
+
+/* ⭐ Animacije za lampice */
+
+@keyframes christmas-green {
+  0%   { box-shadow: 0 0 6px 2px rgba(50, 205, 50, 0.7); }
+  100% { box-shadow: 0 0 14px 6px rgba(50, 205, 50, 1); }
+}
+
+@keyframes christmas-yellow {
+  0%   { box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.7); }
+  100% { box-shadow: 0 0 14px 6px rgba(255, 215, 0, 1); }
+}
+
+@keyframes christmas-off {
+  0%   { box-shadow: 0 0 3px 1px rgba(180, 180, 180, 0.5); }
+  100% { box-shadow: 0 0 8px 3px rgba(180, 180, 180, 0.8); }
+}
+
 
   </style>
 </head>
@@ -221,15 +234,27 @@ body {
 
 <div id="countdown"></div>
 
-<div class="tree tree-right">🎄</div>
-<div class="star">⭐</div>
+
 
 <div class="snowflake">❅</div>
 <div class="snowflake">❆</div>
 <div class="snowflake">❄</div>
+<div class="snowflake">❅</div>
+<div class="snowflake">❆</div>
+<div class="snowflake">❄</div>
+<div class="snowflake">❅</div>
+<div class="snowflake">❆</div>
+<div class="snowflake">❄</div>
+<div class="snowflake">❅</div>
+<div class="snowflake">❄</div>
+<div class="snowflake">❅</div>
+<div class="snowflake">❆</div>
+<div class="snowflake">❄</div>
+<div class="snowflake">❅</div>
+<div class="snowflake">❆</div>
 
   <h1><img src="icon2.png" alt="Logo" width="32" height="32">
-    Wordle</h1> 
+    Wordle Free</h1> 
 </button>
   <div class="grid" id="grid"></div>
   <div id="not-in-list"></div>
@@ -260,8 +285,19 @@ body {
       "cheap","click","cloth","dance","delta","crown","daily","deley","crash","craft","court","climb",
       "civil" ,"chart","shark","clerk","broke","brick","candy","broad","blind","birth","berry","blood",
       "world","trade","union","vital","viral","waste","wafer","skull","slide","space","speed","snack",
-
-     ]
+      "house","stone","green","qucik","plant","knife","dance","grass","teach","match","frame","glass",
+      "about","liver","visit","worry","enter","queen","store","judge","honey","earth","bread","front",
+      "mouth","drink","charm","sweet","faith","inner","ocean","actor","alert","skirt","feast","maple",
+      "organ","polar","orbit","radio","yacht","tonic","fatal","gloom","digit","drift","badge","baker",
+      "porch","noisy","daily","lyric","karma","jelly","choir","amend","asset","basis","boost","toast",
+      "story","spark","titan","shelf","honor","model","slime","jeans","razor","rainy","opera","noble",
+      "replay","pulse","honor","mossey","happy","stain","torch","glaze","lucid","ebony","bonus","bloom",
+      "argue","lucky","juicy","rebel","chaos","boost","spoke","nodal","magic","blunt","genre","paint",
+      "panda","paste","radar","mocha","grape","lance","mango","cobra","shall","shock","skill","pixel",
+      "moist","drone","invite","malta","delta","dirty","cycle","cream","entry","elbow","enact","actor",
+      "apply","angle","audit","seven","eight","board","brace","buggy","bully","cameo","darts","dairy",
+      "talks","milfs","gifts","board","lifes","icons","htmls","icono","light","guess","tapes","girls",
+    ]
 
     let secret = "";
     let currentRow = 0;
@@ -397,7 +433,7 @@ const quests = [
     completed: false
   },
   {
-    id: "noA",
+    id: "adopt,added,aired,alian,alias,alive",
     text: "Guess the word without the letter (A) ",
     completed: false
   }
